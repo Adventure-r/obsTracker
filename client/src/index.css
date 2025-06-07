@@ -81,106 +81,125 @@
   }
 }
 
-@layer components {
-  .telegram-gradient {
-    background: linear-gradient(135deg, var(--telegram-blue) 0%, var(--telegram-blue-dark) 100%);
-  }
-  
-  .role-badge {
-    @apply text-xs px-2 py-1 rounded-md font-semibold uppercase;
-  }
-  
-  .role-badge.leader {
-    @apply bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200;
-  }
-  
-  .role-badge.assistant {
-    @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200;
-  }
-  
-  .role-badge.member {
-    @apply bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200;
-  }
-  
-  .event-card {
-    @apply bg-card border border-border rounded-xl p-4 shadow-sm transition-all hover:shadow-md;
-  }
-  
-  .event-card.important {
-    @apply border-l-4 border-l-destructive;
-  }
-  
-  .task-card {
-    @apply bg-card border border-border rounded-xl p-4 shadow-sm;
-  }
-  
-  .task-card.urgent {
-    @apply border-l-4 border-l-destructive;
-  }
-  
-  .task-card.warning {
-    @apply border-l-4 border-l-yellow-500;
-  }
-  
-  .task-card.completed {
-    @apply opacity-60 bg-muted;
-  }
-  
-  .calendar-day {
-    @apply aspect-square min-h-16 p-2 border border-border rounded-lg cursor-pointer transition-colors hover:bg-accent;
-  }
-  
-  .calendar-day.has-events {
-    @apply bg-primary/10 border-primary/30;
-  }
-  
-  .calendar-day.selected {
-    @apply bg-primary text-primary-foreground;
-  }
-  
-  .navigation-tab {
-    @apply flex-1 py-3 text-center text-sm font-medium transition-colors text-muted-foreground hover:text-foreground;
-  }
-  
-  .navigation-tab.active {
-    @apply text-primary border-b-2 border-primary;
-  }
-  
-  .floating-button {
-    @apply fixed bottom-20 right-4 w-14 h-14 rounded-full shadow-lg flex items-center justify-center text-white transition-transform hover:scale-110 z-40;
-    background: var(--telegram-blue);
-  }
-  
-  .floating-button:hover {
-    background: var(--telegram-blue-dark);
-  }
-  
-  .notification-dot {
-    @apply absolute -top-1 -right-1 w-3 h-3 bg-destructive rounded-full;
-  }
-  
-  .deadline-urgent {
-    animation: pulse 2s infinite;
-  }
-  
-  .telegram-button {
-    background: var(--telegram-blue);
-    @apply text-white font-semibold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity;
-  }
-  
-  .telegram-button:hover {
-    background: var(--telegram-blue-dark);
-  }
-  
-  .telegram-button-secondary {
-    @apply border border-primary text-primary font-semibold py-3 px-6 rounded-xl hover:bg-primary/10 transition-colors;
-  }
+/* Simplified component styles without @layer */
+.telegram-gradient {
+  background: linear-gradient(135deg, hsl(207, 100%, 50%) 0%, hsl(207, 100%, 42%) 100%);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.role-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.role-badge.leader {
+  background-color: hsl(25, 95%, 53%);
+  color: white;
+}
+
+.role-badge.assistant {
+  background-color: hsl(207, 90%, 54%);
+  color: white;
+}
+
+.role-badge.member {
+  background-color: hsl(210, 40%, 96%);
+  color: hsl(222.2, 84%, 4.9%);
+}
+
+.event-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  transition: all 0.15s ease;
+}
+
+.event-card:hover {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.event-card.important {
+  border-left: 4px solid var(--destructive);
+}
+
+.task-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.task-card.urgent {
+  border-left: 4px solid var(--destructive);
+}
+
+.task-card.warning {
+  border-left: 4px solid hsl(45, 93%, 47%);
+}
+
+.task-card.completed {
+  opacity: 0.6;
+  background-color: var(--muted);
+}
+
+.navigation-tab {
+  flex: 1;
+  padding: 0.75rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.15s ease;
+  color: var(--muted-foreground);
+}
+
+.navigation-tab:hover {
+  color: var(--foreground);
+}
+
+.navigation-tab.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 5rem;
+  right: 1rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: transform 0.15s ease;
+  z-index: 40;
+  background: var(--telegram-blue);
+}
+
+.floating-button:hover {
+  transform: scale(1.1);
+  background: var(--telegram-blue-dark);
+}
+
+.telegram-button {
+  background: var(--telegram-blue);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: opacity 0.15s ease;
+}
+
+.telegram-button:hover {
+  opacity: 0.9;
+  background: var(--telegram-blue-dark);
 }
 
 /* Custom scrollbar for better mobile experience */
@@ -207,10 +226,6 @@
   .navigation-tab {
     font-size: 0.75rem;
     padding: 0.5rem;
-  }
-  
-  .navigation-tab i {
-    font-size: 1rem;
   }
 }
 

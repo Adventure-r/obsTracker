@@ -39,18 +39,6 @@ function AppContent() {
     }
   }, []);
 
-  // Handle loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-telegram-section-bg">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Загрузка...</p>
-        </div>
-      </div>
-    );
-  }
-
   // Handle invitation links
   useEffect(() => {
     const path = location;
@@ -62,6 +50,18 @@ function AppContent() {
       }
     }
   }, [location, isAuthenticated, setLocation]);
+
+  // Handle loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-telegram-section-bg">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Загрузка...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Show auth screen if not authenticated or no groups
   if (!isAuthenticated || groups.length === 0) {
